@@ -1,4 +1,4 @@
-tensorflow==2.0.0-beta1
+tensorflow==2.5.3
 xgboost==0.90
 numpy==1.16.0
 pandas==0.24.0
