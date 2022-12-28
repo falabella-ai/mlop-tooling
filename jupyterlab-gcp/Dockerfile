@@ -37,7 +37,7 @@ RUN apt-get -y update && apt-get -y upgrade && apt-get -y autoremove && apt-get 
 
 # Instalando Cloud SDK Google: Beging of https://hub.docker.com/r/google/cloud-sdk/dockerfile
 #https://cloud.google.com/sdk/docs/release-notes
-ARG CLOUD_SDK_VERSION=256.0.0
+ARG CLOUD_SDK_VERSION=412.0.0
 ENV CLOUD_SDK_VERSION=$CLOUD_SDK_VERSION
 
 RUN apt-get -qqy update && apt-get install -qqy \
