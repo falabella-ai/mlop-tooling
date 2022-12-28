@@ -24,7 +24,7 @@ grpcio==1.18.0
 requests==2.20.0
 webapp2==3.0.0b1
 google-cloud==0.34.0
-joblib==0.13.0
+joblib==1.2.0
 
 jupyter
 jupyterlab
