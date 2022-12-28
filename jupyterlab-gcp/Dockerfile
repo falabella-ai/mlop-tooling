@@ -1,4 +1,4 @@
-FROM python:3.7-slim-buster
+FROM python:3.11.1-bullseye
 
 USER root
 
@@ -69,9 +69,9 @@ RUN curl -sL https://deb.nodesource.com/setup_12.x | bash - && apt-get install -
 
 #----- INSTALACION DE FAST TEXT
 
-ADD https://github.com/facebookresearch/fastText/archive/v0.9.1.tar.gz .
-RUN tar xvzf v0.9.1.tar.gz
-RUN cd fastText-0.9.1 && make
+# ADD https://github.com/facebookresearch/fastText/archive/v0.9.1.tar.gz .
+# RUN tar xvzf v0.9.1.tar.gz
+# RUN cd fastText-0.9.1 && make
 
 
 
