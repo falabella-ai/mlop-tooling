@@ -32,4 +32,5 @@ google-cloud-bigquery==1.25.0
 google-api-python-client==1.9.3
 future==0.18.2
 crcmod==1.7
+julia==0.6.0
 cloudml-hypertune
