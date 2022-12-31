@@ -1,4 +1,14 @@
-FROM python:3.11.1-bullseye
+ARG JLVERSION=1.8.2
+ARG PYVERSION=3.10.8
+ARG CLOUD_SDK_VERSION=412.0.0
+ARG BASE_IMAGE=bullseye
+
+FROM julia:${JLVERSION}-${BASE_IMAGE} AS jl
+FROM python:${PYVERSION}-${BASE_IMAGE}
+
+# Merge Julia image:
+COPY --from=jl /usr/local/julia /usr/local/julia
+ENV PATH="/usr/local/julia/bin:${PATH}"
 
 USER root
 
@@ -37,7 +47,6 @@ RUN apt-get -y update && apt-get -y upgrade && apt-get -y autoremove && apt-get 
 
 # Instalando Cloud SDK Google: Beging of https://hub.docker.com/r/google/cloud-sdk/dockerfile
 #https://cloud.google.com/sdk/docs/release-notes
-ARG CLOUD_SDK_VERSION=412.0.0
 ENV CLOUD_SDK_VERSION=$CLOUD_SDK_VERSION
 
 RUN apt-get -qqy update && apt-get install -qqy \
@@ -66,20 +75,13 @@ RUN apt-get -qqy update && apt-get install -qqy \
 RUN groupadd --gid 1000 node && useradd --uid 1000 --gid node --shell /bin/bash --create-home node
 RUN curl -sL https://deb.nodesource.com/setup_12.x | bash - && apt-get install -y nodejs build-essential
 
-
-#----- INSTALACION DE FAST TEXT
-
-# ADD https://github.com/facebookresearch/fastText/archive/v0.9.1.tar.gz .
-# RUN tar xvzf v0.9.1.tar.gz
-# RUN cd fastText-0.9.1 && make
-
-
-
 #---- TODO: In this part makes sense to insert the requeriments as parameter. 
 
 COPY requirements.txt requirements.txt
 RUN pip3 install -r requirements.txt
 
+# Install Julia pre-requisites:
+RUN python3 -c 'import pysr; pysr.install()'
 
 RUN groupadd --gid 1001 jupyterlab && useradd --uid 1001 --gid jupyterlab --shell /bin/bash --create-home jupyterlab && \
 pip install jupyter ipywidgets jupyter_nbextensions_configurator && \
