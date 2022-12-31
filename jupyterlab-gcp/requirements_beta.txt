@@ -16,7 +16,7 @@ wrapt==1.11.1
 crcmod==1.7
 google-api-python-client==1.7.8
 python-json-logger==0.1.10
-wheel==0.32.3
+wheel==0.38.1
 WebOb==1.8.5
 Paste==3.0.6
 tornado==6.0.1

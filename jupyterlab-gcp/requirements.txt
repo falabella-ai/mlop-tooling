@@ -1,6 +1,6 @@
 xgboost==1.6.1
 wrapt==1.12.1
-wheel==0.34.2
+wheel==0.38.1
 WebOb==1.8.6
 webapp2==3.0.0b1
 tornado==5.1.1
